@@ -1,2 +1,2 @@
-# Combat I/O ⚔️
-Placa I/O genérica para robôs da categoria combate e sumô, utilizando o ESP32 DevKit V1.
+# Seraph 👼
+Robô de combate da catergoria Hobbyweight (12lbs ou 5.44kg) controlado através da [Combat I/O V3](https://github.com/roboticatera/CombatIO).

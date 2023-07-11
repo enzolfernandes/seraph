@@ -22,10 +22,10 @@ void controlledLoop()
 
                 // Locomoção
                 x = PS4.LStickX();
-                mapXValue = map(x, minimumStickValue, maximumStickValue, reverse, forward);
+                mapXValue = map(x, minimumStickValue, maximumStickValue, stopped, forward);
 
                 y = PS4.LStickY();
-                mapYValue = map(y, minimumStickValue, maximumStickValue, reverse, forward);
+                mapYValue = map(y, minimumStickValue, maximumStickValue, stopped, forward);
 
 #ifdef _DEBUG_
                 Serial.print("Eixo X do Analogico: ");
@@ -49,26 +49,26 @@ void controlledLoop()
                 }
                 else if (-linearZone < x < linearZone)
                 {
-                        leftMotor.write(constrain(mapYValue, reverse, forward));
-                        rightMotor.write(constrain(mapYValue, reverse, forward));
+                        leftMotor.write(constrain(mapYValue, stopped, forward));
+                        rightMotor.write(constrain(mapYValue, stopped, forward));
 
 #ifdef _DEBUG_
                         Serial.println("Zona de Movimento Linear");
                         Serial.print("Valor enviado aos motores: ");
-                        Serial.println(constrain(mapYValue, reverse, forward));
+                        Serial.println(constrain(mapYValue, stopped, forward));
 #endif
                 }
                 else if (x < -linearZone || x > linearZone)
                 {
-                        leftMotor.write(constrain((mapYValue + mapXValue), reverse, forward));
-                        rightMotor.write(constrain((mapYValue - mapXValue), reverse, forward));
+                        leftMotor.write(constrain((mapYValue + mapXValue), stopped, forward));
+                        rightMotor.write(constrain((mapYValue - mapXValue), stopped, forward));
 
 #ifdef _DEBUG_
                         Serial.println("Zona de Movimento Curvo");
                         Serial.print("Valor enviado ao motor Esquerdo: ");
-                        Serial.println(constrain((mapYValue + mapXValue), reverse, forward));
+                        Serial.println(constrain((mapYValue + mapXValue), stopped, forward));
                         Serial.print("Valor enviado ao motor Direto: ");
-                        Serial.println(constrain((mapYValue - mapXValue), reverse, forward));
+                        Serial.println(constrain((mapYValue - mapXValue), stopped, forward));
 #endif
                 }
         }
