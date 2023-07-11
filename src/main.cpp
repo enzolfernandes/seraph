@@ -5,7 +5,6 @@
 #include <Arduino.h>
 #include "joystick.cpp"
 #include "motors.cpp"
-
 #include "controlled.cpp"
 
 void setup()
