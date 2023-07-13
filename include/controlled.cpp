@@ -3,8 +3,10 @@ constexpr const short maximumTriggerValue = 255;
 
 constexpr const short minimumStickValue = -127;
 constexpr const short maximumStickValue = 127;
-constexpr const short deadZone = 15;
+constexpr const short deadZone = 10;
 constexpr const short linearZone = deadZone + 10;
+
+constexpr const short correction = forward * 0.2; // Correção aplicada no motor esquerdo para atingirem rotação semelhante, já que o ESC não é o mesmo
 
 short x = 0, y = 0, mapXValue = 0, mapYValue = 0;
 
@@ -47,19 +49,22 @@ void controlledLoop()
                         Serial.println("Zona Morta");
 #endif
                 }
-                else if (-linearZone < x < linearZone)
+                else if (-linearZone < x && x < linearZone)
                 {
-                        leftMotor.write(constrain(mapYValue, stopped, forward));
+                        leftMotor.write(constrain(mapYValue, stopped, forward) - correction);
                         rightMotor.write(constrain(mapYValue, stopped, forward));
 
 #ifdef _DEBUG_
                         Serial.println("Zona de Movimento Linear");
-                        Serial.print("Valor enviado aos motores: ");
+                        Serial.print("Valor enviado ao motor Esquerdo: ");
+                        Serial.println(constrain(mapYValue, stopped, forward) - correction);
+                        Serial.print("Valor enviado ao motor Direto: ");
                         Serial.println(constrain(mapYValue, stopped, forward));
 #endif
                 }
-                else if (x < -linearZone || x > linearZone)
+                else if (-linearZone > x || x > linearZone)
                 {
+                        // TODO: Essa lógica não está funcional, elaborar outra.
                         leftMotor.write(constrain((mapYValue + mapXValue), stopped, forward));
                         rightMotor.write(constrain((mapYValue - mapXValue), stopped, forward));
 

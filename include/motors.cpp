@@ -6,7 +6,6 @@ constexpr const short weaponMotorPin = 27;
 
 constexpr const short OperationFrequency = 50; // Hz
 constexpr const short interval = 0;            // ms
-constexpr const short movementInterval = 500;  // ms
 
 constexpr const short minimumPulseWidth = 920;  // us, Padrão: 1000us, Funcional: 1080us
 constexpr const short maximumPulseWidth = 1920; // us
