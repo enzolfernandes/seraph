@@ -70,9 +70,7 @@ void controlledLoop()
                 }
                 else if (x <= -linearZone) // Zona Esquerda
                 {
-
-                        leftMotor.write(constrain(mapYValue, stopped, forward) - correction);
-                        rightMotor.write(constrain(mapYValue, stopped, reverse));
+                        rightMotor.write(constrain(mapYValue, stopped, forward));
 
 #ifdef _DEBUG_
                         Serial.println("Zona de Movimento Curvilíneo Esquerdo");
@@ -85,8 +83,7 @@ void controlledLoop()
                 else if (x >= linearZone) // Zona Direita
                 {
 
-                        leftMotor.write(constrain(mapYValue, stopped, reverse) - correction);
-                        rightMotor.write(constrain(mapYValue, stopped, forward));
+                        leftMotor.write(constrain(mapYValue, stopped, forward) - correction);
 
 #ifdef _DEBUG_
                         Serial.println("Zona de Movimento Curvilíneo Direito");
