@@ -6,7 +6,7 @@ constexpr const short maximumStickValue = 127;
 constexpr const short deadZone = 10;
 constexpr const short linearZone = deadZone + 10;
 
-constexpr const short correction = forward * 0.2; // Correção aplicada no motor esquerdo para atingirem rotação semelhante, já que o ESC não é o mesmo
+constexpr const short correction = forward * 0.3; // Correção aplicada no motor esquerdo para atingirem rotação semelhante, já que o ESC não é o mesmo
 
 short x = 0, y = 0, mapXValue = 0, mapYValue = 0;
 
